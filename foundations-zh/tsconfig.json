@@ -7,6 +7,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "importHelpers": true,
-    "noEmitHelpers": true
+    "noEmitHelpers": true,
+    "esModuleInterop": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
   }
 }

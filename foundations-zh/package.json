@@ -7,13 +7,31 @@
   "author": "lynweklm@gmail.com",
   "license": "MIT",
   "scripts": {
-    "build": "shx rm -rf lib && tsc -p tsconfig.json --outDir lib"
+    "build": "shx rm -rf lib && tsc -p tsconfig.json --outDir lib",
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.ts\""
   },
   "devDependencies": {
+    "@types/jest": "^28.1.3",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
     "shx": "^0.3.2",
-    "typescript": "^3.6.2"
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
   },
   "dependencies": {
+    "jest": "^28.1.1",
     "tslib": "^1.10.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo 'husky' && npm run lint"
+    }
   }
 }
