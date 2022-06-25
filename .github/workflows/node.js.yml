@@ -26,10 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Install composer dependencies
-      run: |
-        composer install --no-scripts
-      working-directory: ./app
     - name: foundations-zh - npm install with husky prepare
       run: |
         npm ci
