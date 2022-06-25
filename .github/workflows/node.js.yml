@@ -26,8 +26,21 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: cd ./foundations-zh
-    - run: npm ci
+    - name: Install composer dependencies
+      run: |
+        composer install --no-scripts
+      working-directory: ./app
+    - name: foundations-zh - npm install with husky prepare
+      run: |
+        npm ci
+      working-directory: ./foundations-zh
+
+    - name: foundations-zh - npm test with jest
+      run: |
+        npm run test
+      working-directory: ./foundations-zh
+    - name: foundations-zh - npm lint with eslint
+      run: |
+        npm run lint
+      working-directory: ./foundations-zh
     # - run: npm run build --if-present
-    - run: npm test
-    - run: npm lint
