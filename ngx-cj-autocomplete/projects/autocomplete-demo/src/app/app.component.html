@@ -1,0 +1,22 @@
+<lib-cj-autocomplete
+    [(inputStr)]="myInputStr" (inputStrChange)="onInputStrChangeHandler($event)"
+    [options]="myOptions"
+>
+</lib-cj-autocomplete>
+
+<h3>Consume: lib-cj-autocomplete</h3>
+<div>
+    <p>myInputStr: {{ myInputStr }}</p>
+    <p>searchStr (debounced 500ms): {{ searchStr }}</p>
+    <p>
+        Other available search values: <em>Ervin Howell</em>, <em>Leanne Graham</em>, <em>Clementine Bauch</em> etc...
+        Use <a href="https://jsonplaceholder.typicode.com/">jsonplaceholder/users</a> as a temporaray API
+    </p>
+
+    <h3>Searched User(s): {{(users$ | async)?.length}}</h3>
+    <ul class="user-list">
+        <li class="user-item" *ngFor="let user of users$ | async; index as i">
+            {{i}} - {{user.name}}
+        </li>
+    </ul>
+</div>
