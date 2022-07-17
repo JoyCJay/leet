@@ -16,7 +16,7 @@
     <h3>Searched User(s): {{(users$ | async)?.length}}</h3>
     <ul class="user-list">
         <li class="user-item" *ngFor="let user of users$ | async; index as i">
-            {{i}} - {{user.name}}
+            {{ user | json }}
         </li>
     </ul>
 </div>

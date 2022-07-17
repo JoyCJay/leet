@@ -8,7 +8,7 @@ interface User {
   "email": string,
 }
 
-const initSearchStr = 'hello world'
+const initSearchStr = '' // Ervin Howell
 
 @Component({
   selector: 'app-root',
@@ -33,19 +33,13 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {
     this.myInputStr = initSearchStr
-    this.myOptions = [
-      {value: 1, label: "a.1"},
-      {value: 2, label: "b.2"},
-      {value: 3, label: "c.3"},
-    ]
-
+    this.myOptions = []
 
     this.payload$ = new BehaviorSubject(initSearchStr)
 
     // 除了此处的 .subscribe() 调用，其他地方都不应该调用 Observable/Subject 的 subscribe 方法
     this.subscription = this.getAutoSearch().subscribe((searchedUserName: string) => {
       this.searchStr = searchedUserName
-      // console.log(`debounced inputStr from payload$: ${searchedUserName}, start search`)
       this.users$ = this.searchQuery(searchedUserName)
     });
   }
@@ -67,7 +61,15 @@ export class AppComponent {
       `https://jsonplaceholder.typicode.com/users${filterQuery}`
     )
 
-    // result.subscribe(v => { console.log('get value:', v) })
+    result.subscribe((users: User[]) => {
+      // console.log('get value:', users)
+      this.myOptions = users.map(u => {
+        return {
+          label: u.name,
+          value: u.id
+        }
+      })
+    })
     return result
   } ;
 
